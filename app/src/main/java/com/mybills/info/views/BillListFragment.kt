@@ -79,6 +79,7 @@ class BillListFragment : Fragment() , LifecycleOwner, ItemClickListener {
                 userViewModel.fetchExpenseTotal(userName).observe(viewLifecycleOwner, Observer {
                     it?.let {
                         total_expenses.text = it.toString()
+                        total_expenses_new.text = "Toatal Rs :$it"
                     }
                 })
             }
@@ -115,7 +116,7 @@ class BillListFragment : Fragment() , LifecycleOwner, ItemClickListener {
 
     private fun populateBillAdapter(userBillList : List<User>){
         if(userBillList.isNotEmpty()){
-            total_container.visibility = View.VISIBLE
+          //  total_container.visibility = View.VISIBLE
         }
 
         val billsAdapter = UserBillAdapter(this@BillListFragment.requireActivity(),userBillList)
