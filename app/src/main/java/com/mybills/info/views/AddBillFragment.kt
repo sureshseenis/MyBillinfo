@@ -64,7 +64,7 @@ class AddBillFragment : Fragment() {
                 && !TextUtils.isEmpty(ed_date.text.toString())){
                 userViewModel.insertUser(User(0,userName,ed_place_of_visit.text.toString(),
                 ed_purpose_visit.text.toString(),
-                ed_price.text.toString().toLong(), ed_date.text.toString()
+                ed_price.text.toString().toDouble(), ed_date.text.toString()
                 ))
             }
         }

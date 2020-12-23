@@ -10,7 +10,7 @@ data class User(
     @ColumnInfo(name = "user_name") val userName: String?,
     @ColumnInfo(name = "place_visited") val placeVisited: String?,
     @ColumnInfo(name = "visit_purpose") val visitPurpose: String?,
-    @ColumnInfo(name = "visit_expense") val visitExpense: Long?,
+    @ColumnInfo(name = "visit_expense") val visitExpense: Double?,
     @ColumnInfo(name = "visited_date") val visitedDate: String?
 
 )
