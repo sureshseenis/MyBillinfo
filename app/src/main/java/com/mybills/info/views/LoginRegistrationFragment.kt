@@ -7,11 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.mybills.info.R
+import com.mybills.info.databinding.FragmentLoginRegistrationBinding
 import com.mybills.info.extensionutils.hideKeyboard
-import kotlinx.android.synthetic.main.fragment_add_bill.*
-import kotlinx.android.synthetic.main.fragment_login_registration.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,7 +27,8 @@ class LoginRegistrationFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-   private lateinit var loginView : View
+    private lateinit var loginView: View
+    private lateinit var loginRegistrationBinding: FragmentLoginRegistrationBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -41,21 +42,30 @@ class LoginRegistrationFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        loginView =  inflater.inflate(R.layout.fragment_login_registration, container, false)
-        return  loginView
+        loginRegistrationBinding = DataBindingUtil.inflate<FragmentLoginRegistrationBinding>(
+            inflater,
+            R.layout.fragment_login_registration,
+            container,
+            false
+        )
+        // loginView = inflater.inflate(R.layout.fragment_login_registration, container, false)
+        return loginRegistrationBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        enter_btn.setOnClickListener {
-            if(!TextUtils.isEmpty(ed_username.text.toString())){
-                enter_btn.hideKeyboard()
-                findNavController().navigate(R.id.action_loginRegistrationFragment_to_billListFragment,
-                    bundleOf("userName" to ed_username.text.toString()))
+        loginRegistrationBinding.enterBtn.setOnClickListener {
+            if (!TextUtils.isEmpty(loginRegistrationBinding.edUsername.text.toString())) {
+                loginRegistrationBinding.enterBtn.hideKeyboard()
+                findNavController().navigate(
+                    R.id.action_loginRegistrationFragment_to_billListFragment,
+                    bundleOf("userName" to loginRegistrationBinding.edUsername.text.toString())
+                )
             }
 
         }
     }
+
     companion object {
         /**
          * Use this factory method to create a new instance of
